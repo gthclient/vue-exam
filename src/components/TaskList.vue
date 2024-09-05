@@ -1,14 +1,25 @@
 <template>
   <div>
     <h2>Task List</h2>
-      <router-link to="/tasks/new" class="create-task-link">Create New Task</router-link>
+    <input
+      type="text"
+      v-model="searchTerm"
+      placeholder="Search tasks..."
+      class="task-search"
+    />
+    <router-link to="/tasks/new" class="create-task-link">+</router-link>
+    <ProgressBar :progress="completionPercentage" />
     <ul>
-      <li v-for="task in tasks" :key="task.id">
+      <li v-for="task in filteredTasks" :key="task.id">
         <div class="task-info">
           <router-link :to="'/tasks/' + task.id" class="task-title">{{ task.title }}</router-link>
           <span class="task-due-date">Due: {{ task.dueDate }}</span>
           <span :class="['task-status', task.completed ? 'completed' : 'pending']">
-            Status: {{ task.completed ? 'Completed' : 'Pending' }}
+            Status:
+            <select v-model="task.completed" @change="updateTaskStatus(task)">
+              <option :value="true">Completed</option>
+              <option :value="false">Pending</option>
+            </select>
           </span>
         </div>
         <div class="task-actions">
@@ -17,15 +28,37 @@
         </div>
       </li>
     </ul>
-
   </div>
 </template>
 
-
 <script>
+import ProgressBar from './ProgressBar.vue';
+
 export default {
   props: {
     tasks: Array
+  },
+  data() {
+    return {
+      searchTerm: ''
+    }
+  },
+  components: {
+    ProgressBar
+  },
+  computed: {
+    completionPercentage() {
+      if (this.tasks.length === 0) {
+        return 0;
+      }
+      const completedTasks = this.tasks.filter(task => task.completed).length;
+      return Math.round((completedTasks / this.tasks.length) * 100);
+    },
+    filteredTasks() {
+      return this.tasks.filter(task =>
+        task.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
   },
   methods: {
     editTask(id) {
@@ -33,6 +66,9 @@ export default {
     },
     deleteTask(id) {
       this.$emit('delete-task', id);
+    },
+    updateTaskStatus(task) {
+      this.$store.commit('updateTask', task);
     }
   }
 };
@@ -88,6 +124,19 @@ li:hover {
   color: #7f8c8d;
 }
 
+.task-status {
+  display: flex;
+  align-items: center;
+}
+
+.task-status select {
+  margin-left: 10px;
+  padding: 3px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
 .task-status.completed {
   color: #27ae60; /* Green for completed tasks */
 }
@@ -135,14 +184,13 @@ button.edit:hover {
   color: #2980b9;
 }
 
-
 .create-task-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 200px;
-  margin: 30px 15px;
-  padding: 15px 25px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  max-width: 30px;
+  margin: 20px 15px;
+  padding: 5px 15px;
   background-color: #2ecc71;
   color: white;
   font-size: 1.2rem;
@@ -166,5 +214,13 @@ button.edit:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
+.task-search {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 </style>

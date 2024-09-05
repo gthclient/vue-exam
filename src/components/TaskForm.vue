@@ -31,7 +31,7 @@ export default {
         title: '',
         description: '',
         dueDate: '',
-        completed: false
+        completed: false,
       },
       isEditing: false
     };
@@ -54,7 +54,7 @@ export default {
         this.$store.commit('addTask', this.task);
       }
       this.$router.push('/tasks');
-    }
+    },
   }
 };
 </script>

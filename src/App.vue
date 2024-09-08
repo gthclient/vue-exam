@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view :tasks="tasks" @delete-task="deleteTask"></router-view>
+    <router-view :tasks="tasks"></router-view>
     <QuestionsModal :questions="questions" ref="_questionsModal"></QuestionsModal>
     <button class="question-button" @click="openQuestionsModal">?</button>
   </div>

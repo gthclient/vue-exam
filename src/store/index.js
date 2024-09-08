@@ -5,13 +5,9 @@ export default createStore({
     tasks: JSON.parse(localStorage.getItem('tasks')) || []
   },
   getters:{
-    
+
   },
   mutations: {
-    deleteTask(state, taskId) {
-      state.tasks = state.tasks.filter(t => t.id !== taskId);
-      localStorage.setItem('tasks', JSON.stringify(state.tasks));
-    },
     addTask(state, task) {
       return new Promise((resolve) => {
       setTimeout(() => {

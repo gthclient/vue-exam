@@ -3,7 +3,6 @@
     <h2>Task List</h2>
 
     <router-link to="/tasks/new" class="create-task-link">+</router-link>
-    <ProgressBar :progress="completionPercentage" />
 
     <ul>
       <li v-for="task in tasks" :key="task.id">
@@ -28,7 +27,6 @@
 </template>
 
 <script>
-import ProgressBar from './ProgressBar.vue';
 
 export default {
   props: {
@@ -39,17 +37,7 @@ export default {
       searchTerm: '',
     }
   },
-  components: {
-    ProgressBar
-  },
   computed: {
-    completionPercentage() {
-      if (this.tasks.length === 0) {
-        return 0;
-      }
-      const completedTasks = this.tasks.filter(task => task.completed).length;
-      return Math.round((completedTasks / this.tasks.length) * 100);
-    },
     tasks() {
       return this.tasks;
     }

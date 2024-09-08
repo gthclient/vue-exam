@@ -23,7 +23,7 @@
     <ul>
       <li v-for="task in filteredTasks" :key="task.id">
         <div class="task-info">
-          <router-link :to="'/tasks/' + task.id" class="task-title">{{ task.title }}</router-link>
+          <span class="task-title">{{ task.title }}</span>
           <span class="task-due-date">Due: {{ task.dueDate }}</span>
           <span :class="['task-status', task.completed ? 'completed' : 'pending']">
             Status:

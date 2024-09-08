@@ -8,15 +8,6 @@
       class="task-search"
     />
 
-    <!-- Improved Sorting Control -->
-    <div class="sort-container">
-      <label for="sortOrder" class="sort-label">Sort by Due Date:</label>
-      <select v-model="sortOrder" id="sortOrder" class="task-sort">
-        <option value="asc">Earliest First</option>
-        <option value="desc">Latest First</option>
-      </select>
-    </div>
-
     <router-link to="/tasks/new" class="create-task-link">+</router-link>
     <ProgressBar :progress="completionPercentage" />
 
@@ -52,7 +43,6 @@ export default {
   data() {
     return {
       searchTerm: '',
-      sortOrder: 'asc',
     }
   },
   components: {
@@ -70,12 +60,6 @@ export default {
       let filtered = this.tasks.filter(task =>
         task.title.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
-      // Apply sorting based on due date
-      filtered = filtered.sort((a, b) => {
-        const dateA = new Date(a.dueDate);
-        const dateB = new Date(b.dueDate);
-        return this.sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
-      });
 
       return filtered;
     }

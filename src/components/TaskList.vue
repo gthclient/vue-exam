@@ -7,8 +7,19 @@
       placeholder="Search tasks..."
       class="task-search"
     />
+
+    <!-- Improved Sorting Control -->
+    <div class="sort-container">
+      <label for="sortOrder" class="sort-label">Sort by Due Date:</label>
+      <select v-model="sortOrder" id="sortOrder" class="task-sort">
+        <option value="asc">Earliest First</option>
+        <option value="desc">Latest First</option>
+      </select>
+    </div>
+
     <router-link to="/tasks/new" class="create-task-link">+</router-link>
     <ProgressBar :progress="completionPercentage" />
+
     <ul>
       <li v-for="task in filteredTasks" :key="task.id">
         <div class="task-info">
@@ -40,7 +51,8 @@ export default {
   },
   data() {
     return {
-      searchTerm: ''
+      searchTerm: '',
+      sortOrder: 'asc' // Default sorting order
     }
   },
   components: {
@@ -55,9 +67,17 @@ export default {
       return Math.round((completedTasks / this.tasks.length) * 100);
     },
     filteredTasks() {
-      return this.tasks.filter(task =>
+      let filtered = this.tasks.filter(task =>
         task.title.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
+      // Apply sorting based on due date
+      filtered = filtered.sort((a, b) => {
+        const dateA = new Date(a.dueDate);
+        const dateB = new Date(b.dueDate);
+        return this.sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+      });
+
+      return filtered;
     }
   },
   methods: {
@@ -222,5 +242,35 @@ button.edit:hover {
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+/* Improved Sort Control Styling */
+.sort-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sort-label {
+  margin-right: 10px;
+  font-size: 1rem;
+  color: #34495e;
+  font-weight: bold;
+}
+
+.task-sort {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #34495e;
+  transition: border-color 0.3s ease;
+}
+
+.task-sort:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 </style>

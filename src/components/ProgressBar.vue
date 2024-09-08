@@ -1,4 +1,3 @@
-<!-- components/ProgressBar.vue -->
 <template>
   <div class="progress-bar">
     <div class="progress-bar-fill" :style="{ width: progress + '%' }">
@@ -26,7 +25,6 @@ export default {
   border-radius: 12.5px;
   overflow: hidden;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-
   position: relative;
   margin: 0 auto;
   margin-bottom: 30px;

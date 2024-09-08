@@ -18,7 +18,10 @@
         <label for="completed">Completed:</label>
         <input type="checkbox" v-model="task.completed" />
       </div>
-      <button type="submit">Save</button>
+      <!-- <button type="submit">Save</button> -->
+      <button type="submit" :disabled="loading">
+        {{ loading ? 'Saving...' : 'Save' }}
+      </button>
     </form>
   </div>
 </template>
@@ -33,7 +36,8 @@ export default {
         dueDate: '',
         completed: false,
       },
-      isEditing: false
+      isEditing: false,
+      loading: false
     };
   },
   created() {
@@ -46,14 +50,17 @@ export default {
     }
   },
   methods: {
-    submitForm() {
+    async submitForm() {
+      this.loading = true; // Prevent multiple submissions
       if (this.isEditing) {
-        this.$store.commit('updateTask', this.task);
+         await this.$store.dispatch('updateTask', this.task);
       } else {
         this.task.id = Date.now();
-        this.$store.commit('addTask', this.task);
+        await this.$store.dispatch('addTask', this.task);
       }
+      this.loading = false;
       this.$router.push('/tasks');
+
     },
   }
 };
@@ -67,6 +74,13 @@ form {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  color: #999;
+  border: 1px solid #999;
 }
 
 h2 {

@@ -12,7 +12,7 @@
             </div>
             <div v-if="isTaskOpen(index)" class="task-body">
               <p><em>Description:</em> {{ task.description }}</p>
-              <p><em>Steps:</em></p>
+              <p v-if="task.steps"><em>Steps:</em></p>
               <ol>
                 <li v-for="(step, stepIndex) in task.steps" :key="stepIndex">{{ step }}</li>
               </ol>

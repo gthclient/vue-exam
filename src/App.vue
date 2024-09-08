@@ -69,7 +69,7 @@ export default {
           ]
         },
         {
-          title: 'Implement Sorting by Due Date',
+          title: 'Enable Double-Click to Edit Task Title',
           description: 'Allow users to double-click a task title in the task list to quickly edit it without navigating to the task detail page.',
           steps: [
             'Modify TaskList.vue to enable editing when the user double-clicks a task title.',

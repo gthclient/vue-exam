@@ -1,18 +1,12 @@
 <template>
   <div>
     <h2>Task List</h2>
-    <input
-      type="text"
-      v-model="searchTerm"
-      placeholder="Search tasks..."
-      class="task-search"
-    />
 
     <router-link to="/tasks/new" class="create-task-link">+</router-link>
     <ProgressBar :progress="completionPercentage" />
 
     <ul>
-      <li v-for="task in filteredTasks" :key="task.id">
+      <li v-for="task in tasks" :key="task.id">
          <div class="task-info">
             <span class="task-title">{{ task.title }}</span>
           <span class="task-due-date">Due: {{ task.dueDate }}</span>
@@ -56,12 +50,8 @@ export default {
       const completedTasks = this.tasks.filter(task => task.completed).length;
       return Math.round((completedTasks / this.tasks.length) * 100);
     },
-    filteredTasks() {
-      let filtered = this.tasks.filter(task =>
-        task.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-
-      return filtered;
+    tasks() {
+      return this.tasks;
     }
   },
   methods: {
@@ -226,13 +216,4 @@ button.edit:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.task-search {
-  margin-bottom: 20px;
-  padding: 10px;
-  width: 100%;
-  max-width: 400px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
 </style>

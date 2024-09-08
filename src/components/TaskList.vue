@@ -7,14 +7,10 @@
     <ul>
       <li v-for="task in tasks" :key="task.id">
          <div class="task-info">
-            <span class="task-title">{{ task.title }}</span>
+          <span class="task-title">{{ task.title }}</span>
           <span class="task-due-date">Due: {{ task.dueDate }}</span>
           <span :class="['task-status', task.completed ? 'completed' : 'pending']">
-            Status:
-            <select v-model="task.completed" @change="updateTaskStatus(task)">
-              <option :value="true">Completed</option>
-              <option :value="false">Pending</option>
-            </select>
+            Status: {{ task.completed ? 'Completed' : 'Pending' }}
           </span>
         </div>
         <div class="task-actions">
@@ -108,36 +104,22 @@ li:hover {
   border-radius: 5px;
 }
 
-.task-due-date,
-.task-status {
+.task-due-date {
   font-size: 0.9rem;
   color: #7f8c8d;
-}
-
-.task-status {
-  display: flex;
-  align-items: center;
-}
-
-.task-status select {
-  margin-left: 10px;
-  padding: 3px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 0.9rem;
-}
-
-.task-status.completed {
-  color: #27ae60; /* Green for completed tasks */
-}
-
-.task-status.pending {
-  color: #e74c3c; /* Red for pending tasks */
 }
 
 .task-actions {
   display: flex;
   align-items: center;
+}
+
+.task-status.completed {
+  color: #27ae60; 
+}
+
+.task-status.pending {
+  color: #e74c3c; 
 }
 
 button {

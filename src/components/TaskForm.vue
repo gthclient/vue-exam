@@ -4,15 +4,15 @@
     <form @submit.prevent="submitForm">
       <div>
         <label for="title">Title:</label>
-        <input type="text" v-model="task.title" required />
+        <input type="text" v-model="task.title" />
       </div>
       <div>
         <label for="description">Description:</label>
-        <textarea v-model="task.description" required></textarea>
+        <textarea v-model="task.description" ></textarea>
       </div>
       <div>
         <label for="dueDate">Due Date:</label>
-        <input type="date" v-model="task.dueDate" required />
+        <input type="date" v-model="task.dueDate"  />
       </div>
       <div>
         <label for="completed">Completed:</label>

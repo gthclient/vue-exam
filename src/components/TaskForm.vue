@@ -51,14 +51,12 @@ export default {
   },
   methods: {
     async submitForm() {
-      this.loading = true; // Prevent multiple submissions
       if (this.isEditing) {
-         await this.$store.dispatch('updateTask', this.task);
+         await this.$store.commit('updateTask', this.task);
       } else {
         this.task.id = Date.now();
-        await this.$store.dispatch('addTask', this.task);
+        await this.$store.commit('addTask', this.task);
       }
-      this.loading = false;
       this.$router.push('/tasks');
 
     },

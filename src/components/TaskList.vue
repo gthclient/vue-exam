@@ -22,8 +22,8 @@
 
     <ul>
       <li v-for="task in filteredTasks" :key="task.id">
-        <div class="task-info">
-          <span class="task-title">{{ task.title }}</span>
+         <div class="task-info">
+            <span class="task-title">{{ task.title }}</span>
           <span class="task-due-date">Due: {{ task.dueDate }}</span>
           <span :class="['task-status', task.completed ? 'completed' : 'pending']">
             Status:
@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       searchTerm: '',
-      sortOrder: 'asc' // Default sorting order
+      sortOrder: 'asc',
     }
   },
   components: {
@@ -135,7 +135,15 @@ li:hover {
   font-size: 1.2rem;
   font-weight: bold;
   color: #34495e;
-  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.task-title-input {
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .task-due-date,

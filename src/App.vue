@@ -18,7 +18,7 @@ export default {
       questions: [
         {
           title: 'Fixing / Complete Code 1',
-          description: 'Investigate and resolve the issue that prevents the task list from being displayed. Ensure that tasks are visible on the task list page.',
+          description: 'Resolve the issue that prevents the task list from being displayed. Ensure that tasks are visible on the task list page.',
         },
         {
           title: 'Fixing / Complete Code 2',
@@ -45,14 +45,6 @@ export default {
           ]
         },
         {
-          title: 'Show a Loader or Progress Bar Based on Task Completion',
-          description: 'Add a progress bar at the top of the task list that shows the percentage of tasks completed. The progress bar should reflect the percentage of tasks that are marked as completed, where 100% indicates all tasks are complete, 50% indicates half of the tasks are complete, and so on.',
-          steps: [
-            'Create a Progress Bar Component',
-            'Calculate Progress in TaskList.vue based on task statuses'
-          ]
-        },
-        {
           title: 'Task Search Functionality',
           description: 'Add a search bar at the top of the task list to filter tasks by title.',
           steps: [
@@ -66,6 +58,14 @@ export default {
           steps: [
             'Add Sorting Control ComboBox with 2 parameters: Earliest First | Latest First',
             'Creating the sorting logic and sort the task by this logic.'
+          ]
+        },
+        {
+          title: 'Create a Progress Bar Based on Task Completion',
+          description: 'Add a progress bar at the top of the task list that shows the percentage of tasks completed. The progress bar should reflect the percentage of tasks that are marked as completed, where 100% indicates all tasks are complete, 50% indicates half of the tasks are complete, and so on.',
+          steps: [
+            'Create a Progress Bar Component',
+            'Calculate Progress in TaskList.vue based on task statuses'
           ]
         },
         {

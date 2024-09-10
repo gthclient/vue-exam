@@ -1,13 +1,32 @@
 <template>
   <div>
     <h2>Task List</h2>
+    <input
+      type="text"
+      v-model="searchTerm"
+      placeholder="Search tasks..."
+      class="task-search"
+    />
 
     <router-link to="/tasks/new" class="create-task-link">+</router-link>
 
     <ul>
       <li v-for="task in tasks" :key="task.id">
          <div class="task-info">
-          <span class="task-title">{{ task.title }}</span>
+          <div v-if="editingTaskId === task.id">
+            <input
+              type="text"
+              v-model="editedTitle"
+              @keyup.enter="saveTaskTitle(task)"
+              @blur="saveTaskTitle(task)"
+              @keydown.esc="cancelEdit"
+              class="task-title-input"
+            />
+          </div>
+          <div v-else @dblclick="editTitle(task)">
+            <span class="task-title">{{ task.title }}</span>
+          </div>
+
           <span class="task-due-date">Due: {{ task.dueDate }}</span>
           <span :class="['task-status', task.completed ? 'completed' : 'pending']">
             Status: {{ task.completed ? 'Completed' : 'Pending' }}
@@ -31,6 +50,9 @@ export default {
   data() {
     return {
       searchTerm: '',
+      editingTaskId: null,
+      editedTitle: '',
+
     }
   },
   computed: {
@@ -47,7 +69,19 @@ export default {
     },
     updateTaskStatus(task) {
       this.$store.commit('updateTask', task);
-    }
+    },
+    editTitle(task) {
+      console.log('editTitle : implement this function')
+      // implement this function
+    },
+    saveTaskTitle(task) {
+      console.log('saveTaskTitle : implement this function')
+      // implement this function
+    },
+    cancelEdit() {
+      this.editingTaskId = null;
+    },
+
   }
 };
 </script>
@@ -83,6 +117,17 @@ li:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
+
+.task-search {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 
 .task-info {
   display: flex;

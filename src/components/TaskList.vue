@@ -60,7 +60,6 @@ export default {
       searchTerm: '',
       editingTaskId: null,
       editedTitle: '',
-
     }
   },
   computed: {

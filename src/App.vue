@@ -48,7 +48,6 @@ export default {
           title: 'Task Search Functionality',
           description: 'Add a search bar at the top of the task list to filter tasks by title.',
           steps: [
-            'Add an input field at the top of TaskList.vue for the search term.',
             'Update the task list to display only tasks that match the search term.'
           ]
         },
@@ -56,7 +55,6 @@ export default {
           title: 'Implement Sorting by Due Date',
           description: 'Add sorting control and implement sorting by due date',
           steps: [
-            'Add Sorting Control ComboBox with 2 parameters: Earliest First | Latest First',
             'Creating the sorting logic and sort the task by this logic.'
           ]
         },

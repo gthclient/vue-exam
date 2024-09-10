@@ -8,6 +8,14 @@
       class="task-search"
     />
 
+    <div class="sort-container">
+      <label for="sortOrder" class="sort-label">Sort by Due Date:</label>
+      <select v-model="sortOrder" id="sortOrder" class="task-sort">
+        <option value="asc">Earliest First</option>
+        <option value="desc">Latest First</option>
+      </select>
+    </div>
+
     <router-link to="/tasks/new" class="create-task-link">+</router-link>
 
     <ul>

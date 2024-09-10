@@ -239,4 +239,33 @@ button.edit:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.sort-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sort-label {
+  margin-right: 10px;
+  font-size: 1rem;
+  color: #34495e;
+  font-weight: bold;
+}
+
+.task-sort {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #34495e;
+  transition: border-color 0.3s ease;
+}
+
+.task-sort:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
 </style>

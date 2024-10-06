@@ -13,8 +13,8 @@ export default createStore({
       setTimeout(() => {
         state.tasks.push(task);
         localStorage.setItem('tasks', JSON.stringify(state.tasks));
-        resolve(); // Resolve the promise after 2 seconds
-      }, 8000); // Simulate a 8-second delay
+        resolve(); 
+      }, 4000); // Simulate a 4-second delay
     });
     },
     updateTask(state, updatedTask) {
@@ -25,11 +25,14 @@ export default createStore({
             state.tasks[index] = updatedTask;
             localStorage.setItem('tasks', JSON.stringify(state.tasks));
           }
-          resolve(); // Resolve the promise after 2 seconds
-        }, 8000); // Simulate a 8-second delay
+          resolve(); 
+        }, 4000); // Simulate a 4-second delay
       });
     },
   },
   actions: {
+    deleteTask({state}, id) {
+      // implement here fixing / complete code 2
+    }
   }
 });

@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import TaskList from '../components/TaskList.vue';
+import TaskManager from '../components/TaskManager.vue';
 import TaskForm from '../components/TaskForm.vue';
 
 const routes = [
-  { path: '/tasks', component: TaskList },
+  { path: '/tasks', component: TaskManager },
   { path: '/tasks/new', component: TaskForm },
   { path: '/tasks/:id/edit', component: TaskForm },
   { path: '/', redirect: '/tasks' } // Redirect to /tasks by default

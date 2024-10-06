@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>{{ isEditing ? 'Edit Task' : 'New Task' }}</h2>
+    <h2>{{ isEditing ? "Edit Task" : "New Task" }}</h2>
     <form @submit.prevent="submitForm">
       <div>
         <label for="title">Title:</label>
@@ -8,20 +8,17 @@
       </div>
       <div>
         <label for="description">Description:</label>
-        <textarea v-model="task.description" ></textarea>
+        <textarea v-model="task.description"></textarea>
       </div>
       <div>
         <label for="dueDate">Due Date:</label>
-        <input type="date" v-model="task.dueDate"  />
+        <input type="date" v-model="task.dueDate" />
       </div>
       <div>
         <label for="completed">Completed:</label>
         <input type="checkbox" v-model="task.completed" />
       </div>
-      <!-- <button type="submit">Save</button> -->
-      <button type="submit" :disabled="loading">
-        {{ loading ? 'Saving...' : 'Save' }}
-      </button>
+      <button type="submit">Save</button>
     </form>
   </div>
 </template>
@@ -31,19 +28,20 @@ export default {
   data() {
     return {
       task: {
-        title: '',
-        description: '',
-        dueDate: '',
+        title: "",
+        description: "",
+        dueDate: "",
         completed: false,
       },
       isEditing: false,
-      loading: false
     };
   },
   created() {
     if (this.$route.params.id) {
       this.isEditing = true;
-      const task = this.$store.state.tasks.find(t => t.id === parseInt(this.$route.params.id));
+      const task = this.$store.state.tasks.find(
+        (t) => t.id === parseInt(this.$route.params.id)
+      );
       if (task) {
         this.task = { ...task };
       }
@@ -52,15 +50,14 @@ export default {
   methods: {
     async submitForm() {
       if (this.isEditing) {
-         await this.$store.commit('updateTask', this.task);
+        await this.$store.commit("updateTask", this.task);
       } else {
         this.task.id = Date.now();
-        await this.$store.commit('addTask', this.task);
+        await this.$store.commit("addTask", this.task);
       }
-      this.$router.push('/tasks');
-
+      this.$router.push("/tasks");
     },
-  }
+  },
 };
 </script>
 
@@ -167,5 +164,4 @@ button:active {
     padding: 12px;
   }
 }
-
 </style>

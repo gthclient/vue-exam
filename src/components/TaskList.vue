@@ -20,7 +20,7 @@
 
     <ul>
       <li v-for="task in tasks" :key="task.id">
-         <div class="task-info">
+        <div class="task-info">
           <div v-if="editingTaskId === task.id">
             <input
               type="text"
@@ -36,8 +36,10 @@
           </div>
 
           <span class="task-due-date">Due: {{ task.dueDate }}</span>
-          <span :class="['task-status', task.completed ? 'completed' : 'pending']">
-            Status: {{ task.completed ? 'Completed' : 'Pending' }}
+          <span
+            :class="['task-status', task.completed ? 'completed' : 'pending']"
+          >
+            Status: {{ task.completed ? "Completed" : "Pending" }}
           </span>
         </div>
         <div class="task-actions">
@@ -50,46 +52,44 @@
 </template>
 
 <script>
-
 export default {
   props: {
-    tasks: Array
+    tasks: Array,
   },
   data() {
     return {
-      searchTerm: '',
+      searchTerm: "",
       editingTaskId: null,
-      editedTitle: '',
-    }
+      editedTitle: "",
+    };
   },
   computed: {
     tasks() {
       return this.tasks;
-    }
+    },
   },
   methods: {
     editTask(id) {
       this.$router.push(`/tasks/${id}/edit`);
     },
     deleteTask(id) {
-      this.$emit('delete-task', id);
+      this.$emit("delete-task", id);
     },
     updateTaskStatus(task) {
-      this.$store.commit('updateTask', task);
+      this.$store.commit("updateTask", task);
     },
     editTitle(task) {
-      console.log('editTitle : implement this function')
+      console.log("editTitle : implement this function");
       // implement this function
     },
     saveTaskTitle(task) {
-      console.log('saveTaskTitle : implement this function')
+      console.log("saveTaskTitle : implement this function");
       // implement this function
     },
     cancelEdit() {
       this.editingTaskId = null;
     },
-
-  }
+  },
 };
 </script>
 
@@ -135,7 +135,6 @@ li:hover {
   border-radius: 5px;
 }
 
-
 .task-info {
   display: flex;
   flex-direction: column;
@@ -167,11 +166,11 @@ li:hover {
 }
 
 .task-status.completed {
-  color: #27ae60; 
+  color: #27ae60;
 }
 
 .task-status.pending {
-  color: #e74c3c; 
+  color: #e74c3c;
 }
 
 button {
@@ -266,5 +265,4 @@ button.edit:hover {
   outline: none;
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
-
 </style>

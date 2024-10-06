@@ -48,7 +48,7 @@ export default {
         {
           title: "Fixing / Complete Code 4",
           description:
-            "The current updateTask method in the Vuex store is trying to handle asynchronous operations inside a mutation, what is the problem?",
+            "The current updateTask and addTask methods in the Vuex store is trying to handle asynchronous operations inside a mutation, what is the problem?",
         },
         {
           title: "Fixing / Complete Code 5",

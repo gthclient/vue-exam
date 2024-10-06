@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TaskList :tasks="tasks" @delete-task="deleteTask" />
+    <TaskList />
   </div>
 </template>
 
